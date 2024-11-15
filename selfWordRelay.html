@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: linear-gradient(135deg, #ffdde1, #ffe4b3, #e4dfff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #d16ba5; /* 연한 보라 핑크 */
+            font-size: 3rem;
+            text-align: center;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff; /* 화이트 카드 */
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 90%;
+            max-width: 400px;
+        }
+
+        div {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            color: #6a4c93; /* 보라색 강조 */
+        }
+
+        #word, #order {
+            font-weight: bold;
+            color: #f9a826; /* 포인트 노란색 */
+            text-decoration: underline;
+        }
+
+        /* 입력창 스타일 */
+        input[type="text"] {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ffe4b3; /* 연한 노란 테두리 */
+            border-radius: 20px;
+            outline: none;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease-in-out;
+            background-color: #fef8e0; /* 부드러운 크림색 */
+        }
+
+        input[type="text"]:focus {
+            border-color: #d16ba5;
+            box-shadow: 0 0 10px rgba(209, 107, 165, 0.5);
+        }
+
+        /* 버튼 스타일 */
+        button {
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background: linear-gradient(135deg, #d16ba5, #f9a826);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #f9a826, #d16ba5);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* 추가 스타일 */
+        .highlight {
+            color: #ffdde1;
+            background: linear-gradient(90deg, #ffdde1, #ffe4b3, #e4dfff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <h1>아라의 쿵쿵따 게임</h1>
+    <div><span id="order"></span>번째 참가자</div>
+    <div>제시어 : <span id="word"></span></div>
+    <input type="text">
+    <button>쿵쿵따!</button>
+
+<script>
+    const playerCount = Number(prompt("쿵쿵따 게임에 참여 할 인원을 적어주세요"));
+
+    const order = document.querySelector('#order');
+    const button = document.querySelector('button');
+    const wordElement = document.querySelector('#word');
+    const input = document.querySelector('input');
+
+    let currentWord = "";
+    let currentPlayer = 1;
+    const usedWord = [];
+
+    button.addEventListener('click', () => {
+        const newWord = input.value.trim();
+        
+        if (usedWord.includes(newWord)) {
+            alert("이미 다른 사람이 입력한 단어입니다. 다른 단어를 입력해주세요");
+            input.value = "";
+        } else if (currentWord === "" || newWord[0] === currentWord[currentWord.length - 1]) {
+            wordElement.textContent = newWord; 
+            usedWord.push(newWord);
+            currentWord = newWord;
+            input.value = "";
+
+            currentPlayer = (currentPlayer % playerCount) + 1;
+            order.textContent = `${currentPlayer}번째 참가자 차례입니다.`;
+        } else {
+            alert("잘못된 단어입니다. 다시 입력해주세요");
+            input.value = "";
+        }
+    });
+</script>
+</body>
+</html>
