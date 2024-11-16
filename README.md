@@ -29,6 +29,11 @@
 - 단어 규칙 검증
 - 직관적이고 부드러운 UI
 
+## ✨ 실제 구현 화면
+
+![image](https://github.com/user-attachments/assets/9539c846-7e7c-427b-a1df-2ff5a9d9df33)
+
+
 ## ✨ 추가하면 좋을 것 같은 기능 아이디어
 
 - **점수 시스템**: 정답 단어마다 점수를 부여
